@@ -41,17 +41,7 @@
 </head>
 
 <body>
-    <div id="fb-root"></div>
-    <script>
-        (function (d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s);
-            js.id = id;
-            js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.8&appId=113581508678006";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-    </script>
+    <div id="fb-root"></div>    
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <header class="mdl-layout__header">
             <div class="mdl-layout__header-row"> <span class="mdl-layout-title font-title" style="font-size:2.2em">
@@ -109,53 +99,16 @@
         </div>
     </dialog>
     <script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+      <script  src="app.js"></script>
     <script>
-        var username = document.getElementById('username')
-            , offset = document.getElementById('offset')
-            , fontsize = document.getElementById('fontsize')
-            , download = document.getElementById('download')
-            , canvas = document.getElementById('canvas')
-            , context = canvas.getContext('2d')
-            , render = function () {
-                window.location.hash = username.value;
-                var img = new Image();
-                img.onload = function () {
-                    context.drawImage(img, 0, 0, img.width, img.height, 0, 0, canvas.width, canvas.height);
-                    context.fillStyle = '#fff';
-                    context.font = 'normal ' + (+fontsize.value) + 'px noworry';
-                    context.fillText(username.value, +offset.value, 310);
-                    context.font = 'normal 70px noworry';
-                    context.fillText('ในหลวง', 400, 310);
-                };
-                img.src = 'bg.png';
-            }
-            , isFacebookApp = function () {
-                var ua = navigator.userAgent || navigator.vendor || window.opera;
-                return (ua.indexOf("FBAN") > -1) || (ua.indexOf("FBAV") > -1);
-            };
-        
-        if (isFacebookApp()) {
-            var dialog = document.getElementById('fb_app_browser');
-            if (!dialog.showModal) {
-                dialogPolyfill.registerDialog(dialog);
-            }
-            dialog.showModal();
-            
-        }
-        
-        if (window.location.hash) {
-            username.value = decodeURIComponent(window.location.hash.replace(/#|@(.)+/g, '') || 'เรา');
-        }
-        render();
-        username.onkeyup = render;
-        username.onchange = render;
-        offset.oninput = render;
-        fontsize.oninput = render;
-        download.onclick = function (e) {
-            ga('Main.send', 'event', 'สร้างรูปเรารักในหลวง - Download', 'view', username.value);
-            this.href = canvas.toDataURL();
-            this.download = 'We_Love_the_King.png';
-        };
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.8&appId=113581508678006";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
     </script>
 </body>
 
